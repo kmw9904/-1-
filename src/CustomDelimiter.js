@@ -1,14 +1,14 @@
-export default function CustomDelimiter(text, delimiter) {
-  const customLeft = delimiter.splice(0, 2).join("");
-  const customRight = delimiter.splice(1, 1);
-
-  if (customLeft === "//" && customRight[0] === "\n") {
-    const customDelimiter = delimiter.splice(0, 1);
-    delimiter.push(customDelimiter);
-  }
-  else {
-    
+export default function CustomDelimiter(input, delimiters) {
+  if (input.startsWith("//")) {
+    return { body: input, delimiters };
   }
 
-  return
+  const nl = input.indexOf("\n");
+  if (nl === -1) throw new Error("커스텀 구분자 형식 오류");
+
+  const delimiter = input.slice(2, nl);
+  delimiters.push(delimiter);
+  const text = input.slice(nl + 1);
+
+  return { text, delimiter };
 }
