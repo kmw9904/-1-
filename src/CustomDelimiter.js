@@ -1,6 +1,10 @@
 export default function CustomDelimiter(input, delimiters) {
   if (input[0] + input[1] !== "//") {
-    return { text: input, delimiters };
+    if (+input[0] === NaN) {
+      throw new Error("커스텀 구분자 형식 오류입니다.");
+    } else {
+      return { text: input, delimiters };
+    }
   }
 
   const nl = input.indexOf("\n");
