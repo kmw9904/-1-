@@ -1,6 +1,6 @@
 export default function CustomDelimiter(input, delimiters) {
-  if (input.startsWith("//")) {
-    return { body: input, delimiters };
+  if (input[0] + input[1] !== "//") {
+    return { text: input, delimiters };
   }
 
   const nl = input.indexOf("\n");
@@ -10,5 +10,5 @@ export default function CustomDelimiter(input, delimiters) {
   delimiters.push(delimiter);
   const text = input.slice(nl + 1);
 
-  return { text, delimiter };
+  return { text, delimiters };
 }
