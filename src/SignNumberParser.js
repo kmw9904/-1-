@@ -43,5 +43,3 @@ export default function SignNumberParser(text, delimiters) {
 
   return { signChangeText };
 }
-
-console.log(SignNumberParser("1--21n3".split(""), [";", ",", "n", "-"]));
